@@ -18,8 +18,7 @@ int main(void)
 
    
     Model icosaedro = LoadModel("Obj/Icosahedron.obj");
-
-
+    
     SetTargetFPS(60);         
    
     while (!WindowShouldClose())    
@@ -38,7 +37,9 @@ int main(void)
 
         BeginMode3D(camera);
 
-        DrawModel(icosaedro, {0,0,0}, 1, RED);
+        DrawModel(icosaedro, {0,0,0}, 50, RED);
+
+        
 
         EndMode3D();
 
