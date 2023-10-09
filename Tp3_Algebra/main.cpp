@@ -1,5 +1,9 @@
 #include "raylib.h"
 
+struct Entity {
+    Model model;
+    Vector3 position;
+};
 
 int main(void)
 {
@@ -17,18 +21,12 @@ int main(void)
     camera.projection = CAMERA_PERSPECTIVE;
 
    
-    Model dice = LoadModel("../res/3x3x3.obj");
+    Model poliedro = LoadModel("../res/poliedro1.obj");
     
     SetTargetFPS(60);         
    
     while (!WindowShouldClose())    
     {
-       
-        /*if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 2.0f;
-        if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 2.0f;
-        if (IsKeyDown(KEY_UP)) ballPosition.y -= 2.0f;
-        if (IsKeyDown(KEY_DOWN)) ballPosition.y += 2.0f;*/
-       
         UpdateCamera(&camera, CAMERA_ORBITAL);
 
         BeginDrawing();
@@ -39,10 +37,18 @@ int main(void)
 
         BeginMode3D(camera);
 
-        DrawGrid(20, 1);
+        DrawGrid(20, 5);
 
-        DrawModel(dice, {0,0,0}, 5, RED);
-        
+        //DrawModel(poliedro, {0, 0, 0}, 2, RED);
+
+        //DrawBoundingBox(box, ORANGE);
+       
+        for (int i = 0; i < poliedro.meshes[0].vertexCount; i += 3) {
+            float x = poliedro.meshes[0].vertices[i];
+            float y = poliedro.meshes[0].vertices[i + 1];
+            float z = poliedro.meshes[0].vertices[i + 2];
+            DrawSphere({x, y, z}, 0.05f, RED);
+        }
 
         EndMode3D();
 
