@@ -21,7 +21,9 @@ int main(void)
     camera.projection = CAMERA_PERSPECTIVE;
 
    
-    Model poliedro = LoadModel("../res/poliedro1.obj");
+    Entity poliedro;
+    poliedro.model = LoadModel("../res/poliedro1.obj");
+    poliedro.position = { 2, 0, 0 };
     
     SetTargetFPS(60);         
    
@@ -39,15 +41,13 @@ int main(void)
 
         DrawGrid(20, 5);
 
-        //DrawModel(poliedro, {0, 0, 0}, 2, RED);
-
-        //DrawBoundingBox(box, ORANGE);
+        DrawModel(poliedro.model, poliedro.position, 1, RAYWHITE);
        
-        for (int i = 0; i < poliedro.meshes[0].vertexCount; i += 3) {
-            float x = poliedro.meshes[0].vertices[i];
-            float y = poliedro.meshes[0].vertices[i + 1];
-            float z = poliedro.meshes[0].vertices[i + 2];
-            DrawSphere({x, y, z}, 0.05f, RED);
+        for (int i = 0; i < poliedro.model.meshes[0].vertexCount * 3; i += 3) {
+            float x = poliedro.model.meshes[0].vertices[i] + poliedro.position.x;
+            float y = poliedro.model.meshes[0].vertices[i + 1] + poliedro.position.y;
+            float z = poliedro.model.meshes[0].vertices[i + 2] + poliedro.position.z;
+            DrawSphere({x, y, z}, 0.2f, GREEN);
         }
 
         EndMode3D();
