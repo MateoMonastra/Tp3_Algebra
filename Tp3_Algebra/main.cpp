@@ -8,8 +8,8 @@ struct Entity {
 int main(void)
 {
    
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1280;
+    const int screenHeight = 720;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
 
@@ -29,7 +29,7 @@ int main(void)
    
     while (!WindowShouldClose())    
     {
-        UpdateCamera(&camera, CAMERA_ORBITAL);
+        UpdateCamera(&camera, CAMERA_THIRD_PERSON);
 
         BeginDrawing();
 
@@ -43,11 +43,22 @@ int main(void)
 
         DrawModel(poliedro.model, poliedro.position, 1, RAYWHITE);
        
+        Vector3 lastVertex;
+
         for (int i = 0; i < poliedro.model.meshes[0].vertexCount * 3; i += 3) {
-            float x = poliedro.model.meshes[0].vertices[i] + poliedro.position.x;
-            float y = poliedro.model.meshes[0].vertices[i + 1] + poliedro.position.y;
-            float z = poliedro.model.meshes[0].vertices[i + 2] + poliedro.position.z;
-            DrawSphere({x, y, z}, 0.2f, GREEN);
+            Vector3 currentVertex;
+            currentVertex.x = poliedro.model.meshes[0].normals[i] + poliedro.position.x;
+            currentVertex.y = poliedro.model.meshes[0].normals[i + 1] + poliedro.position.y;
+            currentVertex.z = poliedro.model.meshes[0].normals[i + 2] + poliedro.position.z;
+            DrawSphere({currentVertex.x, currentVertex.y, currentVertex.z}, 0.1f, RED);
+            currentVertex.x = poliedro.model.meshes[0].vertices[i] + poliedro.position.x;
+            currentVertex.y = poliedro.model.meshes[0].vertices[i + 1] + poliedro.position.y;
+            currentVertex.z = poliedro.model.meshes[0].vertices[i + 2] + poliedro.position.z;
+            DrawSphere({currentVertex.x, currentVertex.y, currentVertex.z}, 0.1, GREEN);
+            if (i > 1) {
+                DrawLine3D(currentVertex, lastVertex, GREEN);
+            }
+            lastVertex = currentVertex;
         }
 
         EndMode3D();
