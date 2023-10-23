@@ -1,11 +1,4 @@
 ﻿  main.cpp
-F:\Facultad\Algebra\Tp3\Tp3_Algebra\Tp3_Algebra\main.cpp(98,85): warning C4305: 'argument': truncation from 'double' to 'float'
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-raylib.lib(rcore.obj) : warning LNK4099: PDB 'raylib.pdb' was not found with 'raylib.lib(rcore.obj)' or at 'F:\Facultad\Algebra\Tp3\Tp3_Algebra\Debug\raylib.pdb'; linking object as if no debug info
-raylib.lib(rmodels.obj) : warning LNK4099: PDB 'raylib.pdb' was not found with 'raylib.lib(rmodels.obj)' or at 'F:\Facultad\Algebra\Tp3\Tp3_Algebra\Debug\raylib.pdb'; linking object as if no debug info
-raylib.lib(rglfw.obj) : warning LNK4099: PDB 'raylib.pdb' was not found with 'raylib.lib(rglfw.obj)' or at 'F:\Facultad\Algebra\Tp3\Tp3_Algebra\Debug\raylib.pdb'; linking object as if no debug info
-raylib.lib(rshapes.obj) : warning LNK4099: PDB 'raylib.pdb' was not found with 'raylib.lib(rshapes.obj)' or at 'F:\Facultad\Algebra\Tp3\Tp3_Algebra\Debug\raylib.pdb'; linking object as if no debug info
-raylib.lib(rtext.obj) : warning LNK4099: PDB 'raylib.pdb' was not found with 'raylib.lib(rtext.obj)' or at 'F:\Facultad\Algebra\Tp3\Tp3_Algebra\Debug\raylib.pdb'; linking object as if no debug info
-raylib.lib(rtextures.obj) : warning LNK4099: PDB '' was not found with 'raylib.lib(rtextures.obj)' or at ''; linking object as if no debug info
-raylib.lib(utils.obj) : warning LNK4099: PDB 'raylib.pdb' was not found with 'raylib.lib(utils.obj)' or at 'F:\Facultad\Algebra\Tp3\Tp3_Algebra\Debug\raylib.pdb'; linking object as if no debug info
-  Tp3_Algebra.vcxproj -> F:\Facultad\Algebra\Tp3\Tp3_Algebra\Debug\Tp3_Algebra.exe
+C:\Users\mdami\OneDrive\Documents\My Programs\Tp3_Algebra\Tp3_Algebra\main.cpp(85,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\mdami\OneDrive\Documents\My Programs\Tp3_Algebra\Tp3_Algebra\main.cpp(119,85): warning C4305: 'argument': truncation from 'double' to 'float'
+  Tp3_Algebra.vcxproj -> C:\Users\mdami\OneDrive\Documents\My Programs\Tp3_Algebra\Debug\Tp3_Algebra.exe

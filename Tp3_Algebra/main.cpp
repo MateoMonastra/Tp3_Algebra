@@ -12,12 +12,10 @@ struct Entity
     Vector3 position;
 };
 
-
-
-
+void DrawGrid3D(vector<Vector3> grid);
+void Create3DGrid(vector<Vector3>& grid, int numCubes, float cubeSize);
 void DrawVertex(Entity entity);
 void ManageInput(Entity& poliedro);
-
 
 int main(void)
 {
@@ -36,7 +34,8 @@ int main(void)
     camera.fovy = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
-   
+    Create3DGrid(grid, 11, 1);
+
     Entity poliedro;
     poliedro.model = LoadModel("../res/poliedro1.obj");
     poliedro.position = { 2, 0, 0 };
@@ -46,9 +45,6 @@ int main(void)
     poliedro2.position = { 2, 0, 0 };
     
     SetTargetFPS(60);         
-   
-    
-
 
     while (!WindowShouldClose())    
     {
@@ -62,7 +58,8 @@ int main(void)
 
         BeginMode3D(camera);
 
-        DrawGrid(200, 0.2f);
+        //DrawGrid(200, 0.2f);
+        //DrawGrid3D(grid);
 
         DrawModel(poliedro.model, poliedro.position, 1, RAYWHITE);
         DrawModel(poliedro2.model, poliedro2.position, 1, YELLOW);
@@ -73,6 +70,8 @@ int main(void)
 
         EndMode3D();
 
+        DrawFPS(1, 1);
+
         EndDrawing();
        
     }
@@ -80,6 +79,28 @@ int main(void)
     CloseWindow(); 
     
     return 0;
+}
+
+void DrawGrid3D(vector<Vector3> grid) {
+    for (int i = 0; i < grid.size(); i++) {
+        DrawSphere({ grid[i].x, grid[i].y, grid[i].z }, 0.1f, RAYWHITE);
+    }
+}
+
+void Create3DGrid(vector<Vector3>& grid, int numCubes, float cubeSize) {
+
+    for (int x = 0; x < numCubes; x++) {
+        for (int y = 0; y < numCubes; y++) {
+            for (int z = 0; z < numCubes; z++) {
+                Vector3 cubeCenter;
+                cubeCenter.x = x * cubeSize;
+                cubeCenter.y = y * cubeSize;
+                cubeCenter.z = z * cubeSize;
+
+                grid.push_back(cubeCenter);
+            }
+        }
+    }
 }
 
 void DrawVertex(Entity entity)
